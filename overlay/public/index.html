@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Progress Overlay</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: transparent; /* Transparent for OBS */
+            font-family: 'Fredoka One', cursive; /* Playful bold font */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .progress-container {
+            position: relative;
+            width: 800px;
+            height: 60px;
+            background: rgba(20, 20, 20, 0.85);
+            border: 6px solid #2a2a2a;
+            border-radius: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%; /* Dynamic Width */
+            background: linear-gradient(90deg, #22c55e, #86efac);
+            border-radius: 34px;
+            transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            box-shadow: 0 0 25px rgba(74, 222, 128, 0.7), inset 0 4px 6px rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            color: #ffffff;
+            font-size: 34px;
+            letter-spacing: 2px;
+            text-shadow: 
+                3px 3px 0 #000, 
+                -3px -3px 0 #000, 
+                3px -3px 0 #000, 
+                -3px 3px 0 #000, 
+                0 0 15px #22c55e;
+            z-index: 10;
+        }
+
+        .mc-head {
+            position: absolute;
+            right: -32px; /* Hangs perfectly off the edge */
+            top: 50%;
+            transform: translateY(-50%);
+            width: 64px;
+            height: 64px;
+            border: 4px solid #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.9), 0 0 20px rgba(74, 222, 128, 0.8);
+            image-rendering: pixelated;
+            z-index: 20;
+            background: url('https://minotar.net/helm/Steve/64.png') no-repeat center center;
+            background-size: contain;
+            /* Give it a subtle floating animation */
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-55%) scale(1.05); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.9), 0 0 25px rgba(74, 222, 128, 1); }
+            100% { transform: translateY(-50%) scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="progress-container">
+        <div class="progress-fill" id="fill">
+            <div class="mc-head" id="head"></div>
+        </div>
+        <div class="progress-text" id="text">0%</div>
+    </div>
+
+    <script>
+        const socket = io();
+        const fill = document.getElementById('fill');
+        const text = document.getElementById('text');
+        
+        socket.on('progress', (data) => {
+            const pct = Math.min(100, Math.max(0, data.percentage));
+            fill.style.width = pct + '%';
+            text.innerText = Math.floor(pct) + '%';
+            
+            // Just a fun little effect: head rotates slightly based on progress updates
+            const head = document.getElementById('head');
+            head.style.transform = `translateY(-50%) rotate(${Math.random() * 10 - 5}deg)`;
+            setTimeout(() => {
+                head.style.transform = `translateY(-50%) rotate(0deg)`;
+            }, 300);
+        });
+    </script>
+</body>
+</html>

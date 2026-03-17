@@ -1,0 +1,268 @@
+# ============================================================
+# 🌾 Rice Farm Mini-Game — Main Script
+# Version: 1.1 (No skript-reflect required)
+# Server: Paper 1.21.1 + Skript 2.14.1
+# ============================================================
+
+options:
+    cx: -66
+    cy: 65
+    cz: -44
+    default-size: 7
+    countdown-time: 10
+
+# ──────────────────────────────────────────────────
+# Command: /farm start
+# ──────────────────────────────────────────────────
+command /farm start:
+    permission: op
+    trigger:
+        if {farm.active} is true:
+            send "&c[Farm] เกมกำลังเล่นอยู่แล้ว! ใช้ /farm stop เพื่อหยุด" to player
+            stop
+        
+        set {farm.active} to true
+        set {farm.size} to {@default-size}
+        set {farm.center.x} to {@cx}
+        set {farm.center.y} to {@cy}
+        set {farm.center.z} to {@cz}
+        set {farm.countdown} to false
+        set {farm.player} to name of player
+        
+        buildArena()
+        
+        give player 64 snowballs
+        
+        send title "&6&l🌾 RICE FARM" with subtitle "&e&lเริ่มปลูกข้าวเลย!" to player for 3 seconds with fade in 0.5 seconds and fade out 0.5 seconds
+        play sound "entity.player.levelup" with volume 1 with pitch 1 to player
+        
+        send "&a[Farm] เกมเริ่มแล้ว! ปา Snowball ลงพื้นที่เพื่อปลูกข้าว" to player
+        send "&a[Farm] ปลูกข้าวเต็มพื้นที่ %{farm.size}%x%{farm.size}% และรอให้โตเต็มที่เพื่อชนะ!" to player
+
+# ──────────────────────────────────────────────────
+# Command: /farm stop
+# ──────────────────────────────────────────────────
+command /farm stop:
+    permission: op
+    trigger:
+        if {farm.active} is not true:
+            send "&c[Farm] ไม่มีเกมกำลังเล่นอยู่" to player
+            stop
+        
+        set {farm.active} to false
+        set {farm.countdown} to false
+        delete {farm.countdown.id}
+        
+        cleanupEntities()
+        
+        send title "&c&l⛔ GAME OVER" with subtitle "&7เกมถูกหยุด" to player for 2 seconds with fade in 0.5 seconds and fade out 0.5 seconds
+        send "&c[Farm] เกมหยุดแล้ว" to player
+
+# ──────────────────────────────────────────────────
+# Command: /farm reset
+# ──────────────────────────────────────────────────
+command /farm reset:
+    permission: op
+    trigger:
+        if {farm.active} is not true:
+            send "&c[Farm] ไม่มีเกมกำลังเล่นอยู่" to player
+            stop
+        
+        set {farm.countdown} to false
+        delete {farm.countdown.id}
+        
+        cleanupEntities()
+        buildArena()
+        
+        send "&e[Farm] ฟาร์มถูกรีเซ็ทแล้ว!" to player
+
+# ============================================================
+# Function: สร้างสนาม
+# ============================================================
+function buildArena():
+    set {_cx} to {farm.center.x}
+    set {_cy} to {farm.center.y}
+    set {_cz} to {farm.center.z}
+    set {_half} to floor({farm.size} / 2)
+    
+    # เคลียร์พื้นที่
+    set {_clearHalf} to {_half} + 3
+    loop integers from ({_cx} - {_clearHalf}) to ({_cx} + {_clearHalf}):
+        set {_x} to loop-value
+        loop integers from ({_cz} - {_clearHalf}) to ({_cz} + {_clearHalf}):
+            set {_z} to loop-value-2
+            set block at location({_x}, {_cy}, {_z}, world "world") to air
+            set block at location({_x}, {_cy} + 1, {_z}, world "world") to air
+            set block at location({_x}, {_cy} + 2, {_z}, world "world") to air
+            set block at location({_x}, {_cy} - 1, {_z}, world "world") to air
+    
+    # สร้าง Farmland
+    loop integers from ({_cx} - {_half}) to ({_cx} + {_half}):
+        set {_x} to loop-value
+        loop integers from ({_cz} - {_half}) to ({_cz} + {_half}):
+            set {_z} to loop-value-2
+            set block at location({_x}, {_cy} - 2, {_z}, world "world") to water
+            set block at location({_x}, {_cy} - 1, {_z}, world "world") to farmland
+    
+    # สร้างรั้ว
+    set {_f} to {_half} + 1
+    loop integers from ({_cx} - {_f}) to ({_cx} + {_f}):
+        set {_x} to loop-value
+        loop integers from ({_cz} - {_f}) to ({_cz} + {_f}):
+            set {_z} to loop-value-2
+            if {_x} = {_cx} - {_f}:
+                set block at location({_x}, {_cy}, {_z}, world "world") to oak fence
+            else if {_x} = {_cx} + {_f}:
+                set block at location({_x}, {_cy}, {_z}, world "world") to oak fence
+            else if {_z} = {_cz} - {_f}:
+                set block at location({_x}, {_cy}, {_z}, world "world") to oak fence
+            else if {_z} = {_cz} + {_f}:
+                set block at location({_x}, {_cy}, {_z}, world "world") to oak fence
+    
+    # Glowstone มุม
+    set block at location({_cx} - {_f}, {_cy}, {_cz} - {_f}, world "world") to glowstone
+    set block at location({_cx} + {_f}, {_cy}, {_cz} - {_f}, world "world") to glowstone
+    set block at location({_cx} - {_f}, {_cy}, {_cz} + {_f}, world "world") to glowstone
+    set block at location({_cx} + {_f}, {_cy}, {_cz} + {_f}, world "world") to glowstone
+
+# ============================================================
+# Function: ลบ entity
+# ============================================================
+function cleanupEntities():
+    set {_loc} to location({farm.center.x}, {farm.center.y}, {farm.center.z}, world "world")
+    loop all entities in radius 30 around {_loc}:
+        if type of loop-entity is villager:
+            if name of loop-entity is "&6[Farm Helper]":
+                kill loop-entity
+        else if type of loop-entity is pig:
+            if name of loop-entity is "&c[Farm Pest]":
+                kill loop-entity
+        else if type of loop-entity is cow:
+            if name of loop-entity is "&c[Farm Pest]":
+                kill loop-entity
+        else if type of loop-entity is sheep:
+            if name of loop-entity is "&c[Farm Pest]":
+                kill loop-entity
+        else if type of loop-entity is chicken:
+            if name of loop-entity is "&c[Farm Pest]":
+                kill loop-entity
+        else if type of loop-entity is ender dragon:
+            kill loop-entity
+
+# ============================================================
+# Loop: ตรวจสอบสถานะเกมทุก 1 วินาที
+# ============================================================
+every 1 second:
+    if {farm.active} is true:
+        set {_cx} to {farm.center.x}
+        set {_cy} to {farm.center.y}
+        set {_cz} to {farm.center.z}
+        set {_half} to floor({farm.size} / 2)
+        set {_total} to {farm.size} * {farm.size}
+        set {_planted} to 0
+        set {_fullGrown} to 0
+        
+        loop integers from ({_cx} - {_half}) to ({_cx} + {_half}):
+            set {_x} to loop-value
+            loop integers from ({_cz} - {_half}) to ({_cz} + {_half}):
+                set {_z} to loop-value-2
+                set {_block} to block at location({_x}, {_cy}, {_z}, world "world")
+                if {_block} is wheat:
+                    add 1 to {_planted}
+                    # เช็ค age ด้วย blockdata variable ที่เก็บไว้
+                    if {farm.age::%{_x}%_%{_z}%} is 7:
+                        add 1 to {_fullGrown}
+        
+        # แสดง Actionbar
+        set {_player} to {farm.player} parsed as player
+        if {_player} is set:
+            if {farm.countdown} is not true:
+                send action bar "&6🌾 ข้าว: &e%{_planted}%&7/&a%{_total}% &8| &6โตเต็มที่: &e%{_fullGrown}%&7/&a%{_total}%" to {_player}
+        
+        # เช็คชนะ
+        if {_fullGrown} >= {_total}:
+            if {_total} > 0:
+                if {farm.countdown} is not true:
+                    set {farm.countdown} to true
+                    add 1 to {farm.countdown.id}
+                    startCountdown({farm.countdown.id})
+
+# ============================================================
+# Function: Countdown 10 วินาที
+# ============================================================
+function startCountdown(id: number):
+    set {_player} to {farm.player} parsed as player
+    if {_player} is not set:
+        stop
+    
+    send title "&a&l🌾 ข้าวเต็มแล้ว!" with subtitle "&eนับถอยหลัง 10 วินาที..." to {_player} for 2 seconds with fade in 0.25 seconds and fade out 0.25 seconds
+    play sound "entity.experience_orb.pickup" with volume 1 with pitch 2 to {_player}
+    
+    loop 10 times:
+        wait 1 second
+        
+        if {farm.active} is not true:
+            stop
+        if {farm.countdown} is not true:
+            stop
+        if {farm.countdown.id} is not {_id}:
+            stop
+        
+        # เช็คว่าข้าวยังเต็มอยู่ไหม
+        set {_cx} to {farm.center.x}
+        set {_cy} to {farm.center.y}
+        set {_cz} to {farm.center.z}
+        set {_half} to floor({farm.size} / 2)
+        set {_total} to {farm.size} * {farm.size}
+        set {_fullGrown} to 0
+        
+        loop integers from ({_cx} - {_half}) to ({_cx} + {_half}):
+            set {_x} to loop-value-2
+            loop integers from ({_cz} - {_half}) to ({_cz} + {_half}):
+                set {_z} to loop-value-3
+                set {_block} to block at location({_x}, {_cy}, {_z}, world "world")
+                if {_block} is wheat:
+                    if {farm.age::%{_x}%_%{_z}%} is 7:
+                        add 1 to {_fullGrown}
+        
+        if {_fullGrown} < {_total}:
+            set {farm.countdown} to false
+            send title "&c&l⚠ Countdown ยกเลิก!" with subtitle "&7ข้าวถูกทำลาย! ปลูกเพิ่มเลย!" to {_player} for 2 seconds with fade in 0.25 seconds and fade out 0.25 seconds
+            play sound "entity.villager.no" with volume 1 with pitch 1 to {_player}
+            stop
+        
+        set {_remaining} to 10 - loop-value
+        send action bar "&a&l⏱ COUNTDOWN: &e&l%{_remaining}% &a&lวินาที" to {_player}
+        play sound "block.note_block.hat" with volume 0.5 with pitch 1 to {_player}
+        
+        if {_remaining} <= 3:
+            send title "&e&l⏱ %{_remaining}%" with subtitle "&aอีกนิดเดียว!" to {_player} for 0.8 seconds with fade in 0.1 seconds and fade out 0.1 seconds
+            play sound "block.note_block.pling" with volume 1 with pitch 2 to {_player}
+    
+    if {farm.active} is true:
+        if {farm.countdown} is true:
+            if {farm.countdown.id} is {_id}:
+                farmWin()
+
+# ============================================================
+# Function: ชนะ!
+# ============================================================
+function farmWin():
+    set {_player} to {farm.player} parsed as player
+    if {_player} is not set:
+        stop
+    
+    send title "&6&l🏆 YOU WIN!" with subtitle "&e&lปลูกข้าวสำเร็จ!" to {_player} for 5 seconds with fade in 0.5 seconds and fade out 1 seconds
+    play sound "ui.toast.challenge_complete" with volume 1 with pitch 1 to {_player}
+    
+    set {_fx} to {farm.center.x}
+    set {_fy} to {farm.center.y} + 5
+    set {_fz} to {farm.center.z}
+    set {_fireworkLoc} to location({_fx}, {_fy}, {_fz}, world "world")
+    loop 5 times:
+        launch ball large colored red, orange and yellow firework at {_fireworkLoc}
+        wait 0.5 seconds
+    
+    set {farm.active} to false
+    set {farm.countdown} to false
+    send "&a&l[Farm] 🎉 ยินดีด้วย! คุณปลูกข้าวสำเร็จแล้ว!" to {_player}

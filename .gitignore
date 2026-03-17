@@ -1,0 +1,45 @@
+# ═══════════════════════════════════════════════════════
+# Minecraft Server — .gitignore
+# ═══════════════════════════════════════════════════════
+
+# ─── Sensitive / Private Data ──────────────────────────
+ops.json
+whitelist.json
+banned-players.json
+banned-ips.json
+usercache.json
+server.properties
+.console_history
+
+# ─── Plugin secrets & machine IDs ─────────────────────
+plugins/ServerTap/config.yml
+plugins/mabel-riceFarm/machine-id
+
+# ─── Logs & Cache ─────────────────────────────────────
+logs/
+cache/
+versions/
+libraries/
+
+# ─── Generated / Runtime ──────────────────────────────
+plugins/.paper-remapped/
+plugins/bStats/
+plugins/spark/
+
+# ─── Large Binaries (use release zip instead) ─────────
+*.jar
+
+# ─── Dev / IDE ─────────────────────────────────────────
+.vscode/
+mabel-ricefarm/
+backup/
+bug_farm.txt
+
+# ─── Node modules ──────────────────────────────────────
+node_modules/
+**/node_modules/
+
+# ─── OS files ──────────────────────────────────────────
+Thumbs.db
+desktop.ini
+.DS_Store

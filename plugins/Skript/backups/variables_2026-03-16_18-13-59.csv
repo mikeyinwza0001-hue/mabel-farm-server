@@ -1,0 +1,19 @@
+# === Skript's variable storage ===
+# Please do not modify this file manually!
+#
+# version: 2.14.1
+
+farm.active, boolean, 01
+farm.age::-66_-46, long, 0000000000000007
+farm.age::-66_-45, long, 0000000000000007
+farm.age::-66_-44, long, 0000000000000007
+farm.bossbar.visible, boolean, 01
+farm.center.x, long, FFFFFFFFFFFFFFBE
+farm.center.y, long, 0000000000000043
+farm.center.z, long, FFFFFFFFFFFFFFD4
+farm.countdown, boolean, 00
+farm.countdown.id, long, 0000000000000005
+farm.dragon.fire, boolean, 00
+farm.player, string, 800E6D696B6579696E777A6130303031
+farm.size, long, 0000000000000020
+

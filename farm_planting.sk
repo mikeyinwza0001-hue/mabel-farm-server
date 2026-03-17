@@ -1,0 +1,63 @@
+# ============================================================
+# 🌾 Rice Farm — Planting System (No skript-reflect)
+# ใช้ /setblock command + {farm.age::} variables
+# ============================================================
+
+on projectile hit:
+    if {farm.active} is not true:
+        stop
+    projectile is snowball
+    shooter is a player
+    
+    set {_loc} to event-location
+    set {_cx} to {farm.center.x}
+    set {_cy} to {farm.center.y}
+    set {_cz} to {farm.center.z}
+    set {_half} to floor({farm.size} / 2)
+    
+    set {_bx} to floor(x-coordinate of {_loc})
+    set {_bz} to floor(z-coordinate of {_loc})
+    
+    # เช็คขอบเขต
+    if {_bx} < ({_cx} - {_half}):
+        stop
+    if {_bx} > ({_cx} + {_half}):
+        stop
+    if {_bz} < ({_cz} - {_half}):
+        stop
+    if {_bz} > ({_cz} + {_half}):
+        stop
+    
+    set {_farmLoc} to location({_bx}, {_cy}, {_bz}, world "world")
+    set {_block} to block at {_farmLoc}
+    
+    if {_block} is wheat:
+        # ปาซ้ำ → เร่งโต
+        set {_age} to {farm.age::%{_bx}%_%{_bz}%}
+        if {_age} is not set:
+            set {_age} to 0
+        if {_age} >= 7:
+            send action bar "&e🌾 ข้าวนี้โตเต็มที่แล้ว!" to shooter
+            play sound "block.note_block.bass" with volume 0.5 with pitch 0.5 to shooter
+            stop
+        add 1 to {_age}
+        set {farm.age::%{_bx}%_%{_bz}%} to {_age}
+        execute console command "setblock %{_bx}% %{_cy}% %{_bz}% minecraft:wheat[age=%{_age}%] replace"
+        play sound "item.bone_meal.use" with volume 0.8 with pitch 1.5 to shooter
+        send action bar "&b⚡ เร่งข้าวโตขึ้น! (age %{_age}%)" to shooter
+    else if {_block} is air:
+        set {_below} to block at location({_bx}, {_cy} - 1, {_bz}, world "world")
+        if {_below} is farmland:
+            # ปลูกใหม่
+            set {farm.age::%{_bx}%_%{_bz}%} to 0
+            execute console command "setblock %{_bx}% %{_cy}% %{_bz}% minecraft:wheat[age=0] replace"
+            play sound "item.crop.plant" with volume 0.8 with pitch 1.2 to shooter
+            send action bar "&a🌱 ปลูกข้าวสำเร็จ!" to shooter
+
+# Refill Snowball ทุก 3 วินาที
+every 3 seconds:
+    if {farm.active} is true:
+        set {_player} to {farm.player} parsed as player
+        if {_player} is set:
+            if amount of snowballs in {_player}'s inventory < 16:
+                give 16 snowballs to {_player}
