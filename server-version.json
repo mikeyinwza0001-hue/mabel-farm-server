@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
+  "version": "2.1.0",
   "mc_version": "1.21.4",
   "description": "Mabel Rice Farm Server",
-  "changelog": "Initial release — Rice Farm mini-game with TikTok integration"
+  "changelog": "v2.1.0 — Auto-start game on join, clear old farm + kill animals on join, prevent animal spawns, helper plants over fire, fix expand not preserving fire, remove dragonFireLoop, overlay logging"
 }
