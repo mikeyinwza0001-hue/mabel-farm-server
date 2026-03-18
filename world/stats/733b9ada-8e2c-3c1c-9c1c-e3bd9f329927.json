@@ -1,34 +1,32 @@
 {
   "stats": {
-    "minecraft:used": {
-      "minecraft:splash_potion": 10639,
-      "minecraft:netherite_sword": 36,
-      "minecraft:snowball": 47712,
-      "minecraft:dirt": 49
-    },
-    "minecraft:dropped": {
-      "minecraft:wheat_seeds": 2,
-      "minecraft:splash_potion": 1,
-      "minecraft:snowball": 160
+    "minecraft:killed": {
+      "minecraft:skeleton": 1,
+      "minecraft:iron_golem": 2
     },
     "minecraft:custom": {
       "minecraft:talked_to_villager": 37,
-      "minecraft:time_since_rest": 911850,
-      "minecraft:walk_one_cm": 8515,
-      "minecraft:leave_game": 15,
+      "minecraft:time_since_rest": 925973,
+      "minecraft:walk_one_cm": 8517,
+      "minecraft:leave_game": 17,
       "minecraft:mob_kills": 4,
       "minecraft:walk_under_water_one_cm": 643,
       "minecraft:damage_dealt": 856,
-      "minecraft:play_time": 911850,
-      "minecraft:jump": 122,
-      "minecraft:time_since_death": 911850,
+      "minecraft:play_time": 925973,
+      "minecraft:jump": 124,
+      "minecraft:time_since_death": 925973,
       "minecraft:drop": 13,
-      "minecraft:sprint_one_cm": 5319,
-      "minecraft:total_world_time": 911850,
-      "minecraft:fly_one_cm": 6722037,
+      "minecraft:sprint_one_cm": 5810,
+      "minecraft:total_world_time": 925973,
+      "minecraft:fly_one_cm": 6753714,
       "minecraft:walk_on_water_one_cm": 9684,
-      "minecraft:crouch_one_cm": 626,
-      "minecraft:sneak_time": 4290
+      "minecraft:crouch_one_cm": 648,
+      "minecraft:sneak_time": 4503
+    },
+    "minecraft:mined": {
+      "minecraft:short_grass": 3,
+      "minecraft:tall_grass": 3,
+      "minecraft:fern": 1
     },
     "minecraft:picked_up": {
       "minecraft:wheat_seeds": 9,
@@ -36,14 +34,16 @@
       "minecraft:splash_potion": 1,
       "minecraft:snowball": 144
     },
-    "minecraft:killed": {
-      "minecraft:skeleton": 1,
-      "minecraft:iron_golem": 2
+    "minecraft:dropped": {
+      "minecraft:wheat_seeds": 2,
+      "minecraft:splash_potion": 1,
+      "minecraft:snowball": 160
     },
-    "minecraft:mined": {
-      "minecraft:short_grass": 3,
-      "minecraft:tall_grass": 3,
-      "minecraft:fern": 1
+    "minecraft:used": {
+      "minecraft:splash_potion": 10639,
+      "minecraft:netherite_sword": 36,
+      "minecraft:snowball": 47712,
+      "minecraft:dirt": 49
     }
   },
   "DataVersion": 4671
