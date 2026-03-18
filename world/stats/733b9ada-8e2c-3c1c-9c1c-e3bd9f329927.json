@@ -1,32 +1,33 @@
 {
   "stats": {
-    "minecraft:killed": {
-      "minecraft:skeleton": 1,
-      "minecraft:iron_golem": 2
-    },
     "minecraft:custom": {
       "minecraft:talked_to_villager": 37,
-      "minecraft:time_since_rest": 925973,
+      "minecraft:time_since_rest": 931973,
       "minecraft:walk_one_cm": 8517,
       "minecraft:leave_game": 17,
       "minecraft:mob_kills": 4,
       "minecraft:walk_under_water_one_cm": 643,
       "minecraft:damage_dealt": 856,
-      "minecraft:play_time": 925973,
+      "minecraft:play_time": 931973,
       "minecraft:jump": 124,
-      "minecraft:time_since_death": 925973,
+      "minecraft:time_since_death": 931973,
       "minecraft:drop": 13,
       "minecraft:sprint_one_cm": 5810,
-      "minecraft:total_world_time": 925973,
-      "minecraft:fly_one_cm": 6753714,
+      "minecraft:total_world_time": 931973,
+      "minecraft:fly_one_cm": 6756112,
       "minecraft:walk_on_water_one_cm": 9684,
       "minecraft:crouch_one_cm": 648,
-      "minecraft:sneak_time": 4503
+      "minecraft:sneak_time": 4529
     },
-    "minecraft:mined": {
-      "minecraft:short_grass": 3,
-      "minecraft:tall_grass": 3,
-      "minecraft:fern": 1
+    "minecraft:killed": {
+      "minecraft:skeleton": 1,
+      "minecraft:iron_golem": 2
+    },
+    "minecraft:used": {
+      "minecraft:splash_potion": 10639,
+      "minecraft:netherite_sword": 36,
+      "minecraft:snowball": 47712,
+      "minecraft:dirt": 49
     },
     "minecraft:picked_up": {
       "minecraft:wheat_seeds": 9,
@@ -39,11 +40,10 @@
       "minecraft:splash_potion": 1,
       "minecraft:snowball": 160
     },
-    "minecraft:used": {
-      "minecraft:splash_potion": 10639,
-      "minecraft:netherite_sword": 36,
-      "minecraft:snowball": 47712,
-      "minecraft:dirt": 49
+    "minecraft:mined": {
+      "minecraft:short_grass": 3,
+      "minecraft:tall_grass": 3,
+      "minecraft:fern": 1
     }
   },
   "DataVersion": 4671
