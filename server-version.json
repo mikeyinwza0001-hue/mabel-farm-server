@@ -1,6 +1,6 @@
 {
-  "version": "2.1.2",
+  "version": "2.2.0",
   "mc_version": "1.21.4",
   "description": "Mabel Rice Farm Server",
-  "changelog": "v2.1.2 — Fix overlay port conflict: Java overlay now uses port 5657 to avoid Node.js conflict"
+  "changelog": "v2.2.0 — Clear old wheat on join (wider area), block ALL mob spawns, kill all entities on join, set peaceful + gamerules, overlay port 5657"
 }
