@@ -1,6 +1,6 @@
 {
-  "version": "2.1.1",
+  "version": "2.1.2",
   "mc_version": "1.21.4",
   "description": "Mabel Rice Farm Server",
-  "changelog": "v2.1.1 â€” Clean world data (remove old expanded farm), wider clear area on join"
+  "changelog": "v2.1.2 — Fix overlay port conflict: Java overlay now uses port 5657 to avoid Node.js conflict"
 }
