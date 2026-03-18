@@ -1,6 +1,6 @@
 {
-  "version": "2.1.0",
+  "version": "2.1.1",
   "mc_version": "1.21.4",
   "description": "Mabel Rice Farm Server",
-  "changelog": "v2.1.0 — Auto-start game on join, clear old farm + kill animals on join, prevent animal spawns, helper plants over fire, fix expand not preserving fire, remove dragonFireLoop, overlay logging"
+  "changelog": "v2.1.1 — Clean world data (remove old expanded farm), wider clear area on join"
 }
