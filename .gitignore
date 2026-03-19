@@ -11,7 +11,6 @@ server.properties
 
 # Plugin secrets & machine IDs
 plugins/ServerTap/config.yml
-# plugins/mabel-riceFarm/machine-id
 
 # Logs & Cache
 logs/
@@ -24,8 +23,8 @@ plugins/.paper-remapped/
 plugins/bStats/
 plugins/spark/
 
-# Large Binaries (use release zip instead)
-*.jar
+# Server JAR (large binary, not plugin JARs)
+paper.jar
 
 # Dev / IDE
 .vscode/
