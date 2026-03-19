@@ -11,7 +11,7 @@ server.properties
 
 # Plugin secrets & machine IDs
 plugins/ServerTap/config.yml
-plugins/mabel-riceFarm/machine-id
+# plugins/mabel-riceFarm/machine-id
 
 # Logs & Cache
 logs/
