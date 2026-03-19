@@ -1,6 +1,1 @@
-{
-  "version": "2.2.0",
-  "mc_version": "1.21.4",
-  "description": "Mabel Rice Farm Server",
-  "changelog": "v2.2.0 � Clear old wheat on join (wider area), block ALL mob spawns, kill all entities on join, set peaceful + gamerules, overlay port 5657"
-}
+﻿{"version":"2.3.1","mc_version":"1.21.4","description":"Mabel Rice Farm Server","changelog":"v2.3.1 — Fix gamerule crash, block all mob spawns, kill entities on join, clear wider area, overlay port 5657, fix server status detection"}
