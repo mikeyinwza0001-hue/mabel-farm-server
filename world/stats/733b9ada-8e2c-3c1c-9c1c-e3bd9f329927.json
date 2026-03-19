@@ -1,49 +1,49 @@
 {
   "stats": {
-    "minecraft:custom": {
-      "minecraft:talked_to_villager": 37,
-      "minecraft:time_since_rest": 931973,
-      "minecraft:walk_one_cm": 8517,
-      "minecraft:leave_game": 17,
-      "minecraft:mob_kills": 4,
-      "minecraft:walk_under_water_one_cm": 643,
-      "minecraft:damage_dealt": 856,
-      "minecraft:play_time": 931973,
-      "minecraft:jump": 124,
-      "minecraft:time_since_death": 931973,
-      "minecraft:drop": 13,
-      "minecraft:sprint_one_cm": 5810,
-      "minecraft:total_world_time": 931973,
-      "minecraft:fly_one_cm": 6756112,
-      "minecraft:walk_on_water_one_cm": 9684,
-      "minecraft:crouch_one_cm": 648,
-      "minecraft:sneak_time": 4529
-    },
-    "minecraft:killed": {
-      "minecraft:skeleton": 1,
-      "minecraft:iron_golem": 2
-    },
-    "minecraft:used": {
-      "minecraft:splash_potion": 10639,
-      "minecraft:netherite_sword": 36,
-      "minecraft:snowball": 47712,
-      "minecraft:dirt": 49
+    "minecraft:dropped": {
+      "minecraft:wheat_seeds": 2,
+      "minecraft:splash_potion": 1,
+      "minecraft:snowball": 161
     },
     "minecraft:picked_up": {
       "minecraft:wheat_seeds": 9,
       "minecraft:wheat": 2,
       "minecraft:splash_potion": 1,
-      "minecraft:snowball": 144
+      "minecraft:snowball": 145
     },
-    "minecraft:dropped": {
-      "minecraft:wheat_seeds": 2,
-      "minecraft:splash_potion": 1,
-      "minecraft:snowball": 160
+    "minecraft:killed": {
+      "minecraft:skeleton": 1,
+      "minecraft:iron_golem": 2
     },
     "minecraft:mined": {
       "minecraft:short_grass": 3,
       "minecraft:tall_grass": 3,
       "minecraft:fern": 1
+    },
+    "minecraft:used": {
+      "minecraft:splash_potion": 16929,
+      "minecraft:netherite_sword": 36,
+      "minecraft:snowball": 71182,
+      "minecraft:dirt": 49
+    },
+    "minecraft:custom": {
+      "minecraft:talked_to_villager": 38,
+      "minecraft:time_since_rest": 1087974,
+      "minecraft:walk_one_cm": 9276,
+      "minecraft:leave_game": 17,
+      "minecraft:mob_kills": 4,
+      "minecraft:walk_under_water_one_cm": 643,
+      "minecraft:damage_dealt": 856,
+      "minecraft:play_time": 1087974,
+      "minecraft:jump": 142,
+      "minecraft:time_since_death": 1087974,
+      "minecraft:drop": 14,
+      "minecraft:sprint_one_cm": 6229,
+      "minecraft:total_world_time": 1087974,
+      "minecraft:fly_one_cm": 9167654,
+      "minecraft:walk_on_water_one_cm": 9684,
+      "minecraft:crouch_one_cm": 648,
+      "minecraft:sneak_time": 7058
     }
   },
   "DataVersion": 4671
