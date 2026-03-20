@@ -26,6 +26,10 @@ plugins/spark/
 # Server JAR (large binary, not plugin JARs)
 paper.jar
 
+# Bundled runtime binaries (too large for GitHub)
+jre/
+overlay/node.exe
+
 # Dev / IDE
 .vscode/
 mabel-ricefarm/

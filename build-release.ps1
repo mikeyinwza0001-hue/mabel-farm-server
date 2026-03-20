@@ -13,7 +13,7 @@ $ErrorActionPreference = "Stop"
 # Read version
 $versionFile = Get-Content ".\server-version.json" | ConvertFrom-Json
 $version = $versionFile.version
-$zipName = "mabel-server-v$version.zip"
+$zipName = "mabel-farm-server-v$version.zip"
 
 Write-Host "=== Building release v$version ===" -ForegroundColor Cyan
 
@@ -53,6 +53,14 @@ $excludeDirs = @(
     "plugins\bStats",
     "plugins\spark"
 )
+
+# ─── Ensure overlay dependencies are installed ────────
+if (Test-Path ".\overlay\package.json") {
+    Write-Host "Installing overlay dependencies..." -ForegroundColor Yellow
+    Push-Location ".\overlay"
+    npm install --production 2>$null
+    Pop-Location
+}
 
 # ─── Copy everything first ────────────────────────────
 Write-Host "Copying server files..." -ForegroundColor Yellow
