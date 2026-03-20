@@ -1,1 +1,1 @@
-{"version":"2.3.2","mc_version":"1.21.4","description":"Mabel Rice Farm Server","changelog":"v2.3.2 — Added player detection support for Mabel Tracker, updated mabel-ricefarm plugin"}
+{"version":"2.3.3","mc_version":"1.21.11","description":"Mabel Rice Farm Server","changelog":"v2.3.3 — Corrected Minecraft version metadata to 1.21.11 to fix auto-update compatibility, added player detection"}
