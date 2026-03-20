@@ -1,1 +1,1 @@
-{"version":"2.3.3","mc_version":"1.21.11","description":"Mabel Rice Farm Server","changelog":"v2.3.3 — Corrected Minecraft version metadata to 1.21.11 to fix auto-update compatibility, added player detection"}
+{"version":"2.4.0","mc_version":"1.21.11","description":"Mabel Rice Farm Server","changelog":"v2.4.0 — Added portability fixes: bundled JRE support and Node.js dependency check for better customer compatibility."}
