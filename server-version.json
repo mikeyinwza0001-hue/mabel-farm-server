@@ -1,1 +1,1 @@
-﻿{"version":"2.3.1","mc_version":"1.21.4","description":"Mabel Rice Farm Server","changelog":"v2.3.1 — Fix gamerule crash, block all mob spawns, kill entities on join, clear wider area, overlay port 5657, fix server status detection"}
+{"version":"2.3.2","mc_version":"1.21.4","description":"Mabel Rice Farm Server","changelog":"v2.3.2 — Added player detection support for Mabel Tracker, updated mabel-ricefarm plugin"}
