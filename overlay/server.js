@@ -63,6 +63,14 @@ app.get('/api/access-status', (_req, res) => {
     res.json({ status: accessStatus });
 });
 
+// ─── State for HTTP polling ──────────────────────────────────────────────────
+let latestProgress = { current: 0, total: 0, percentage: 0 };
+
+app.get('/api/progress', (_req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.json(latestProgress);
+});
+
 // ─── Log Watcher ─────────────────────────────────────────────────────────────
 const logPath = path.join(__dirname, '..', 'plugins', 'Skript', 'logs', 'farm_progress.log');
 
@@ -82,6 +90,7 @@ tail.on('line', (data) => {
         const current = parseInt(match[1]);
         const total = parseInt(match[2]);
         const percentage = total > 0 ? (current / total) * 100 : 0;
+        latestProgress = { current, total, percentage };
         io.emit('progress', { current, total, percentage });
     }
 });
@@ -92,8 +101,8 @@ tail.on('error', (error) => {
 
 // ─── Start Server ────────────────────────────────────────────────────────────
 const PORT = 5656;
-server.listen(PORT, async () => {
-    console.log(`Overlay Server running on http://localhost:${PORT}`);
+server.listen(PORT, '0.0.0.0', async () => {
+    console.log(`Overlay Server running on http://127.0.0.1:${PORT}`);
 
     // Ping tracker on startup
     await pingTracker('server_start');
