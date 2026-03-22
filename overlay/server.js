@@ -12,6 +12,11 @@ const io = new Server(server, { cors: { origin: '*' } });
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Serve overlay at /overlay.html for TikTok Studio compatibility
+app.get('/overlay.html', (_req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 // ─── Mabel Tracker Config ────────────────────────────────────────────────────
 const TRACKER_URL = process.env.TRACKER_URL || '';
 const TRACKER_SECRET = process.env.TRACKER_SECRET || '';
