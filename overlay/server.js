@@ -80,7 +80,7 @@ if (!fs.existsSync(logPath)) {
 }
 
 console.log(`Watching log file: ${logPath}`);
-const tail = new Tail(logPath, { follow: true, fromBeginning: false, useWatchFile: true });
+const tail = new Tail(logPath, { follow: true, fromBeginning: true, useWatchFile: true });
 
 tail.on('line', (data) => {
     if (accessStatus === 'banned') return;
