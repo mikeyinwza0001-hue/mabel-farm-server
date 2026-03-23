@@ -5,9 +5,9 @@
 # ============================================================
 
 options:
-    cx: -66
-    cy: 65
-    cz: -44
+    cx: -90
+    cy: -59
+    cz: -82
     default-size: 7
     countdown-time: 10
 
@@ -30,6 +30,10 @@ command /farm start:
         set {farm.player} to name of player
         
         buildArena()
+        
+        # ตั้งจุดเกิดและเทเลพอร์ตผู้เล่น
+        execute console command "setworldspawn -94 -53 -94"
+        teleport player to location(-93.867, -52.95, -93.999, world "world")
         
         give player 64 snowballs
         
@@ -85,16 +89,17 @@ function buildArena():
     set {_cz} to {farm.center.z}
     set {_half} to floor({farm.size} / 2)
     
-    # เคลียร์พื้นที่
+    # เคลียร์พื้นที่ (รวมต้นไม้, บล็อค, สิ่งกีดขวางทั้งหมด)
     set {_clearHalf} to {_half} + 3
     loop integers from ({_cx} - {_clearHalf}) to ({_cx} + {_clearHalf}):
         set {_x} to loop-value
         loop integers from ({_cz} - {_clearHalf}) to ({_cz} + {_clearHalf}):
             set {_z} to loop-value-2
-            set block at location({_x}, {_cy}, {_z}, world "world") to air
-            set block at location({_x}, {_cy} + 1, {_z}, world "world") to air
-            set block at location({_x}, {_cy} + 2, {_z}, world "world") to air
             set block at location({_x}, {_cy} - 1, {_z}, world "world") to air
+            set block at location({_x}, {_cy}, {_z}, world "world") to air
+            loop integers from ({_cy} + 1) to ({_cy} + 10):
+                set {_y} to loop-value-3
+                set block at location({_x}, {_y}, {_z}, world "world") to air
     
     # สร้าง Farmland
     loop integers from ({_cx} - {_half}) to ({_cx} + {_half}):

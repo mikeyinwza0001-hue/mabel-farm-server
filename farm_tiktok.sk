@@ -184,17 +184,22 @@ function rebuildArenaKeepWheat():
     set {_cz} to {farm.center.z}
     set {_half} to floor({farm.size} / 2)
     
-    # ลบรั้วเก่า
+    # ลบรั้วเก่า + เคลียร์สิ่งกีดขวางทั้งหมด (ต้นไม้, บล็อค, ฯลฯ)
     set {_clearHalf} to {_half} + 5
     loop integers from ({_cx} - {_clearHalf}) to ({_cx} + {_clearHalf}):
         set {_x} to loop-value
         loop integers from ({_cz} - {_clearHalf}) to ({_cz} + {_clearHalf}):
             set {_z} to loop-value-2
+            # เคลียร์ระดับฟาร์ม (เก็บข้าวไว้)
             set {_block} to block at location({_x}, {_cy}, {_z}, world "world")
-            if {_block} is oak fence:
+            if {_block} is not wheat:
                 set block at location({_x}, {_cy}, {_z}, world "world") to air
-            else if {_block} is glowstone:
-                set block at location({_x}, {_cy}, {_z}, world "world") to air
+            # เคลียร์ใต้ระดับฟาร์ม
+            set block at location({_x}, {_cy} - 1, {_z}, world "world") to air
+            # เคลียร์ด้านบน (ลบต้นไม้, ใบไม้, บล็อคต่างๆ)
+            loop integers from ({_cy} + 1) to ({_cy} + 10):
+                set {_y} to loop-value-3
+                set block at location({_x}, {_y}, {_z}, world "world") to air
     
     # สร้าง farmland ใหม่
     loop integers from ({_cx} - {_half}) to ({_cx} + {_half}):
