@@ -1,1 +1,1 @@
-{"version":"2.5.1","mc_version":"1.21.4","description":"Mabel Rice Farm Server","changelog":"v2.5.1 - Plugin v2.4.1: Preserve grass blocks on flat world, only clear at farm level and above."}
+{"version":"2.5.2","mc_version":"1.21.4","description":"Mabel Rice Farm Server","changelog":"v2.5.2 - Plugin v2.4.2: Add /mbfarm respawn command, set world spawn on game start."}
