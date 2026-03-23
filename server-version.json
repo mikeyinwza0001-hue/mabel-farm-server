@@ -1,1 +1,1 @@
-{"version":"2.5.0","mc_version":"1.21.4","description":"Mabel Rice Farm Server","changelog":"v2.5.0 - Plugin v2.4.0: Clear trees/blocks on farm expand, new world coordinates (x:-90 y:-59 z:-82)."}
+{"version":"2.5.1","mc_version":"1.21.4","description":"Mabel Rice Farm Server","changelog":"v2.5.1 - Plugin v2.4.1: Preserve grass blocks on flat world, only clear at farm level and above."}
