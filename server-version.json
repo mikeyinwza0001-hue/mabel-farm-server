@@ -1,1 +1,1 @@
-{"version":"2.5.4","mc_version":"1.21.4","description":"Mabel Rice Farm Server","changelog":"v2.5.4 - Plugin v2.4.4: Fix torches/lights removed on expand/shrink, dragon fire now uses current farm size, preserve grass blocks on expand."}
+{"version":"2.5.5","mc_version":"1.21.4","description":"Mabel Rice Farm Server","changelog":"v2.5.5 - Plugin v2.4.5: Preserve fire blocks when expanding/shrinking farm."}
