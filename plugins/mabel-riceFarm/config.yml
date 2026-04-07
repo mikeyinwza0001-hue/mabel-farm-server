@@ -1,0 +1,15 @@
+farm:
+  center-x: -64
+  center-y: -60
+  center-z: -47
+  default-size: 36
+  world: "world"
+  spawn-x: -66.958
+  spawn-y: -53.39337
+  spawn-z: -54.311
+
+overlay:
+  port: 5657
+
+tracker:
+  url: "https://mabeltracker.up.railway.app"
