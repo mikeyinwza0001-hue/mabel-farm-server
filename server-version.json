@@ -1,1 +1,1 @@
-{"version":"2.6.0","mc_version":"1.21.4","description":"Mabel Rice Farm Server","changelog":"v2.6.0 - Plugin v2.5.0: Auto-clear old farm when position changes. Farm center: x:-64 y:-60 z:-47."}
+{"version":"2.7.1","mc_version":"1.21.4","description":"Mabel Rice Farm Server","changelog":"v2.7.1 - Full server bundle release (world + all plugins included). Plugin v2.5.0 with HMAC-signed tracker integration."}
